@@ -2,6 +2,11 @@
 <div class="wrapper-content">
   <section>
     <div class="container">
+      <section>
+        <div class="new-note">
+          <newNote />
+        </div>
+      </section>
      <notes />
     </div>
   </section>
@@ -11,15 +16,31 @@
 <script>
 
 import notes from '@/components/Notes.vue'
+import newNote from '@/components/NewNote.vue'
 
 export default {
   components: {
-    notes
+    notes,
+    newNote
   },
   data() {
     return {
-
+    
     }
+  },
+  state: {
+      grid: true
+  },
+  mutations: {},
+  actions: {},
+  getters: {
+    getGrid(){
+      return grid
+    }
+  },
+
+  created() {
+    
   }
 };
 </script>
