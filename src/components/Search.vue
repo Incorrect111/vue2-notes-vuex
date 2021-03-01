@@ -21,29 +21,21 @@
       </div>
     </div>
     <!-- Search input -->
-    <input type="text" :placeholder="placeholder" v-model="search" />
+    <input type="text" placeholder="Find your note" v-model="search" />
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    value: {
-      type: String,
-      required: true
-    },
-    placeholder: {
-      type: String,
-      default: "Search"
-    }
-  },
-  data() {
-    return { search: this.value };
-  },
-  watch: {
-    search(val) {
-      // console.log(val)
-      this.$emit("search", val);
+
+  computed: {
+    search: {
+       get: function () {
+            return this.$store.getters.getSearch;
+       },
+       set: function (val) {
+         this.$store.dispatch('setSearch', val)
+       }
     }
   }
 };

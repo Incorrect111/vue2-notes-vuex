@@ -4,9 +4,9 @@
     <input v-model="title.nameOfNote" type="text"/>
     <label>Description</label>
     <textarea v-model="description.descrContent"></textarea>
+    <br>
+    <br>
     <button class="btn btnPrimary" @click="addNote">New note</button>
-
-    <!-- <p> {{ note.title.nameOfNote }} </p> -->
 
     <div class="select">
      <select v-model="note.priority">
@@ -15,11 +15,8 @@
               v-bind:value="option.value"
               :key="option.id"
                >{{ option.value }}</option>
-              <!-- <option>{{ this.note.options[index] }}</option> -->
             </select>
-            <!-- <span>{{ note.options.value }}</span> -->
-
-            </div>
+        </div>
   </div>
 </template>
 
@@ -28,33 +25,21 @@
 export default {
   data() {
     return {
-     note: {
-          priority: "Low",
-          options: [
-                { id: 1, value: 'Low' },
-                { id: 2, value: 'Medium' },
-                { id: 3, value: 'High' }
-                   ]
-      },
-        description: {
-         descrContent: "",
-         descrEditing: "",
-         hidenDescr: false,
-         descrShow: true,
-       },
-        title: {
-        nameOfNote: "",
-        hidenTitle: false,
-        titleShow: true,
-        titleEditing: false,
-        additionalTitleVar: "",
-              },
+      note: {},
+      title: {},
+      description: {},
+      date: new Date(Date.now()).toLocaleString()
          }
   },
 
-
+created() {
+  this.note = this.$store.getters.getNote
+  this.title = this.$store.getters.getTitle
+  this.description = this.$store.getters.getDescription
+  this.date = this.$store.getters.getDate
+},
    methods: {
-     addNote() {
+     addNote () {
         if (this.title.nameOfNote === "") return false
 
         let note = this.note
@@ -78,10 +63,9 @@ export default {
          date: this.$store.getters.getDate
          });
 
-//Reset
        this.resetNote()
      },
-
+//Reset
     resetNote() {
       this.note.priority ='Low'
       this.title.nameOfNote = ''

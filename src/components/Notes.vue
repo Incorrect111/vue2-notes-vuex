@@ -1,14 +1,20 @@
 <template>
+
+<div class="container">
+  <div class="icons">
+    <svg :class="{ active: this.$store.getters.getGrid }" @click="changeGrid(true)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+    <svg :class="{ active: !this.$store.getters.getGrid }" @click="changeGrid(false)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg>
+  </div>
+
   <div class="notes">
  <div
       class="note"
-      :class="[note.note.priority, {full: !grid}]"
-      v-for="(note, index) in notes"
+      :class="[note.note.priority, { full: !grid }]"
+      v-for="(note, index) in notesFiltered"
       :key="index"
     >
 
   <!-- header -->
-
 
       <div class="note-header">
         <p
@@ -35,6 +41,7 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 <script>
 
@@ -47,23 +54,44 @@ export default {
   },
   data() {
     return {
-      notes: [],
-      grid: false,
+      notes: []
     };
-  },
-
-  props: {
   },
 
   created() {
     this.notes = this.$store.getters.getNotes
     this.grid = this.$store.getters.getGrid
-    console.log(this.notes)
   },
   computed: {
-    notess() {
-      return this.notes = this.$store.getters.getNotes
-    }
+
+       notesFiltered () {
+            let array = this.$store.getters.getNotes,
+                search = this.$store.getters.getSearch
+                //Small
+            search = search.trim().toLowerCase()
+            this.$store.dispatch('setSearch', search)
+                //Filter
+            array = array.filter(function (item) {
+                if (item.title.nameOfNote.toLowerCase().indexOf(search) !== -1) {
+                  console.log('ITEM: ', item)
+                    return  item
+                }
+            })
+
+                //Error
+                return this.notes = array
+
+                 if (!search) return array
+        },
+
+        grid: {
+          get: function() {
+              return this.$store.getters.getGrid
+          },
+
+          set: function() {
+          }
+        },
   },
   methods: {
     // Remove note
@@ -76,11 +104,14 @@ export default {
     },
     //Editing
     editing(index, editngParam) {
-      // this.notes[index].title.titleShow = false
-      this.$store.dispatch
-      ('editing',
-      {note: this.notes[index],
-       editing: editngParam})
+      this.$store.dispatch ('editing',
+      {
+        note: this.notes[index],
+        editing: editngParam
+       })
+    },
+    changeGrid(boolean) {
+      this.$store.dispatch('changeGrid', boolean)
     }
   }
 };
@@ -149,4 +180,5 @@ svg {
     margin-right: 0;
   }
 }
+
 </style> -->

@@ -7,6 +7,11 @@
           <newNote />
         </div>
       </section>
+      <section>
+        <div>
+          <search />
+        </div>
+      </section>
      <notes />
     </div>
   </section>
@@ -17,11 +22,13 @@
 
 import notes from '@/components/Notes.vue'
 import newNote from '@/components/NewNote.vue'
+import search from '@/components/Search.vue'
 
 export default {
   components: {
     notes,
-    newNote
+    newNote,
+    search
   },
   data() {
     return {

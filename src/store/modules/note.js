@@ -1,8 +1,7 @@
 export default {
     state: {
-
         note: {
-            priority: "",
+            priority: "Low",
             options: [
                 { id: 1, value: 'Low' },
                 { id: 2, value: 'Medium' },
@@ -25,17 +24,14 @@ export default {
             titleEditing: false,
             additionalTitleVar: "",
         },
-        date: new Date(Date.now()).toLocaleString()
+        date: new Date(Date.now()).toLocaleString(),
+
+        search: ''
+
+
     },
+
     mutations: {
-        resetNote(state) {
-            state.title.nameOfNote = "",
-                state.description.descrContent = "",
-                state.note.priority = ""
-                // state.note.highPriority = false,
-                // state.note.mediumPriority = false,
-                // state.note.lowPriority = false
-        },
 
         setNote(state, {...payload }) {
             //Set Note
@@ -59,14 +55,20 @@ export default {
             state.date = payload.date
 
         },
-        changeMessage(state, payload) {
-            state.note.message = payload
+
+        resetNote(state) {
+            state.title.nameOfNote = "",
+                state.description.descrContent = "",
+                state.note.priority = ""
         },
 
-        setDescription(state, payload) {
-            state.description = payload.description
-            console.log(state.description)
-        }
+
+        setSearch(state, val) {
+            state.search = val
+            console.log('from setSearch Mutaition: ', state.search)
+        },
+
+
 
     },
     actions: {
@@ -77,13 +79,6 @@ export default {
 
         resetNote({ commit }) {
             commit('resetNote')
-        },
-        changeMessage({ commit }, payload) {
-            commit('changeMessage', payload)
-        },
-
-        editingDescr({ commit }, payload) {
-            commit('editingDescr', payload)
         },
 
         //Editing
@@ -124,35 +119,29 @@ export default {
             }
         },
 
-        setDescription({ commit }, payload) {
-            commit('setDescription', payload)
+        setSearch({ commit }, val) {
+            commit('setSearch', val)
         },
-    },
 
+    },
 
 
     getters: {
         getNote(state) {
             return state.note
         },
-
-        getNewNoteMessage(state) {
-            return state.note.message
+        getTitle(state) {
+            return state.title
         },
         getDescription(state) {
             return state.description
         },
-        getTitle(state) {
-            return state.title
-        },
         getDate(state) {
             return state.date
         },
-        getHidenDescr(state) {
-            return state.note.description.hidenDescr
-        },
-        getNameOfNote(state) {
-            return state.note.title.nameOfNote
+
+        getSearch(state) {
+            return state.search
         }
     }
 }
