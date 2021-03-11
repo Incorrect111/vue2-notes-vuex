@@ -61,16 +61,14 @@ created() {
          description: this.$store.getters.getDescription,
          title: this.$store.getters.getTitle,
          date: this.$store.getters.getDate
-         });
-
-       this.resetNote()
+         })
+         //Reset
+         .then(() => {
+              this.note.priority ='Low'
+              this.title.nameOfNote = ''
+              this.description.descrContent = ' '
+         })
      },
-//Reset
-    resetNote() {
-      this.note.priority ='Low'
-      this.title.nameOfNote = ''
-      this.description.descrContent = ' '
-    }
 
    }
 }

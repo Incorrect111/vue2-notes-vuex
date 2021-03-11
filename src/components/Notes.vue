@@ -103,11 +103,11 @@ export default {
       this.$store.dispatch('editingDescr',{ note: this.notes[index]} )
     },
     //Editing
-    editing(index, editngParam) {
+    editing(index, editingParam) {
       this.$store.dispatch ('editing',
       {
         note: this.notes[index],
-        editing: editngParam
+        editing: editingParam
        })
     },
     changeGrid(boolean) {

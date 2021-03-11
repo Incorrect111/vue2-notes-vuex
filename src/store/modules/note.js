@@ -1,58 +1,43 @@
+import { noteDefault, descriptionDefault, titleDefault } from '@/constants.js'
+
 export default {
+
     state: {
-        note: {
-            priority: "Low",
-            options: [
-                { id: 1, value: 'Low' },
-                { id: 2, value: 'Medium' },
-                { id: 3, value: 'High' }
-            ]
-        },
-        // Description
-        description: {
-            descrContent: "",
-            descrEditing: "",
-            hidenDescr: false,
-            descrShow: true,
-            additionalDescrVar: ''
-        },
-        // Title
-        title: {
-            nameOfNote: "",
-            hidenTitle: false,
-            titleShow: true,
-            titleEditing: false,
-            additionalTitleVar: "",
-        },
+
+        note: noteDefault.note,
+
+        description: descriptionDefault.description,
+
+        title: titleDefault.title,
+
         date: new Date(Date.now()).toLocaleString(),
 
         search: ''
-
 
     },
 
     mutations: {
 
-        setNote(state, {...payload }) {
+        setNote(state, {...note }) {
             //Set Note
-            state.note.priority = payload.note.priority
-            state.options = payload.note.options
+            state.note.priority = note.note.priority
+            state.options = note.note.options
 
             // Set title
-            state.title.nameOfNote = payload.title.nameOfNote
-            state.title.hidenTitle = payload.title.hidenTitle
-            state.title.titleShow = payload.title.titleShow
-            state.title.additionalTitleVar = payload.title.additionalTitleVar
+            state.title.nameOfNote = note.title.nameOfNote
+            state.title.hidenTitle = note.title.hidenTitle
+            state.title.titleShow = note.title.titleShow
+            state.title.additionalTitleVar = note.title.additionalTitleVar
 
             //Set description
-            state.description.descrContent = payload.description.descrContent
-            state.description.descrEditing = payload.description.descrEditing
-            state.description.hidenDescr = payload.description.hidenDescr
-            state.description.descrShow = payload.description.descrShow
-            state.description.additionalDescrVar = payload.description.additionalDescrVar
+            state.description.descrContent = note.description.descrContent
+            state.description.descrEditing = note.description.descrEditing
+            state.description.hidenDescr = note.description.hidenDescr
+            state.description.descrShow = note.description.descrShow
+            state.description.additionalDescrVar = note.description.additionalDescrVar
 
             //Set Date
-            state.date = payload.date
+            state.date = note.date
 
         },
 
@@ -73,8 +58,8 @@ export default {
     },
     actions: {
 
-        setNote({ commit }, {...payload }) {
-            commit('setNote', {...payload })
+        setNote({ commit }, {...note }) {
+            commit('setNote', {...note })
         },
 
         resetNote({ commit }) {
@@ -82,38 +67,38 @@ export default {
         },
 
         //Editing
-        editing({ commit }, payload) {
+        editing({ commit }, note) {
             //Edit title
-            if (payload.editing === 'titleEditing') {
-                payload.note.title.titleShow = false
-                payload.note.title.hidenTitle = true
-                payload.note.title.additionalTitleVar = payload.note.title.nameOfNote
+            if (note.editing === 'titleEditing') {
+                note.note.title.titleShow = false
+                note.note.title.hidenTitle = true
+                note.note.title.additionalTitleVar = note.note.title.nameOfNote
 
                 document.body.addEventListener("keyup", e => {
                     if (e.keyCode === 13) {
-                        payload.note.title.hidenTitle = false;
-                        payload.note.title.titleShow = true;
-                        payload.note.title.nameOfNote = payload.note.title.additionalTitleVar;
+                        note.note.title.hidenTitle = false;
+                        note.note.title.titleShow = true;
+                        note.note.title.nameOfNote = note.note.title.additionalTitleVar;
                     } else if (e.keyCode === 27) {
-                        payload.note.title.hidenTitle = false;
-                        payload.note.title.titleShow = true;
+                        note.note.title.hidenTitle = false;
+                        note.note.title.titleShow = true;
                     }
                 })
 
                 //Edit description
-            } else if (payload.editing === 'descrEditing') {
-                payload.note.description.descrShow = false
-                payload.note.description.hidenDescr = true
-                payload.note.description.additionalDescrVar = payload.note.description.descrContent
+            } else if (note.editing === 'descrEditing') {
+                note.note.description.descrShow = false
+                note.note.description.hidenDescr = true
+                note.note.description.additionalDescrVar = note.note.description.descrContent
 
                 document.body.addEventListener("keyup", e => {
                     if (e.keyCode === 13) {
-                        payload.note.description.hidenDescr = false;
-                        payload.note.description.descrShow = true;
-                        payload.note.description.descrContent = payload.note.description.additionalDescrVar;
+                        note.note.description.hidenDescr = false;
+                        note.note.description.descrShow = true;
+                        note.note.description.descrContent = note.note.description.additionalDescrVar;
                     } else if (e.keyCode === 27) {
-                        payload.note.description.hidenDescr = false;
-                        payload.note.description.descrShow = true;
+                        note.note.description.hidenDescr = false;
+                        note.note.description.descrShow = true;
                     }
                 })
             }
@@ -127,21 +112,14 @@ export default {
 
 
     getters: {
-        getNote(state) {
-            return state.note
-        },
-        getTitle(state) {
-            return state.title
-        },
-        getDescription(state) {
-            return state.description
-        },
-        getDate(state) {
-            return state.date
-        },
+        getNote: state => state.note,
 
-        getSearch(state) {
-            return state.search
-        }
+        getTitle: state => state.title,
+
+        getDescription: state => state.description,
+
+        getDate: state => state.date,
+
+        getSearch: state => state.search
     }
 }
