@@ -1,3 +1,5 @@
+//Default note
+
 export const noteDefault = {
     note: {
         priority: "Low",
@@ -8,6 +10,7 @@ export const noteDefault = {
         ]
     }
 };
+//Default description
 
 export const descriptionDefault = {
     description: {
@@ -19,6 +22,8 @@ export const descriptionDefault = {
     }
 };
 
+//Default title
+
 export const titleDefault = {
     title: {
         nameOfNote: "",
@@ -28,6 +33,8 @@ export const titleDefault = {
         additionalTitleVar: ""
     }
 };
+
+notes
 
 export const notesDefault = {
     notes: [{
