@@ -1,5 +1,4 @@
 <template>
-
 <div class="container">
   <div class="icons">
     <svg :class="{ active: this.$store.getters.getGrid }" @click="changeGrid(true)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
@@ -48,10 +47,6 @@
 
 
 export default {
-
-  components: {
-
-  },
   data() {
     return {
       notes: []
@@ -63,7 +58,6 @@ export default {
     this.grid = this.$store.getters.getGrid
   },
   computed: {
-
        notesFiltered () {
             let array = this.$store.getters.getNotes,
                 search = this.$store.getters.getSearch
@@ -73,11 +67,9 @@ export default {
                 //Filter
             array = array.filter(function (item) {
                 if (item.title.nameOfNote.toLowerCase().indexOf(search) !== -1) {
-                  console.log('ITEM: ', item)
                     return  item
                 }
             })
-
                 //Error
                 return this.notes = array
 
@@ -99,9 +91,6 @@ export default {
       this.$store.dispatch('removeNote', index)
     },
 
-    editingDescr(index) {
-      this.$store.dispatch('editingDescr',{ note: this.notes[index]} )
-    },
     //Editing
     editing(index, editingParam) {
       this.$store.dispatch ('editing',

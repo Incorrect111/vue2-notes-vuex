@@ -80,6 +80,12 @@ created() {
     text-align: center;
 
 }
+input {
+  max-width: 1000px;
+}
+textarea {
+  max-width: 1000px;
+}
 .select {
     margin-top: 25px;
     margin-bottom: -10px;

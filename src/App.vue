@@ -17,7 +17,6 @@
   </section>
 </div>
 </template>
-
 <script>
 
 import notes from '@/components/Notes.vue'
@@ -30,25 +29,6 @@ export default {
     newNote,
     search
   },
-  data() {
-    return {
-    
-    }
-  },
-  state: {
-      grid: true
-  },
-  mutations: {},
-  actions: {},
-  getters: {
-    getGrid(){
-      return grid
-    }
-  },
-
-  created() {
-    
-  }
 };
 </script>
 

@@ -34,7 +34,7 @@ export const titleDefault = {
     }
 };
 
-notes
+//Notes
 
 export const notesDefault = {
     notes: [{

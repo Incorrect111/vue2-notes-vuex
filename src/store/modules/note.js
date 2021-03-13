@@ -50,7 +50,6 @@ export default {
 
         setSearch(state, val) {
             state.search = val
-            console.log('from setSearch Mutaition: ', state.search)
         },
 
 
