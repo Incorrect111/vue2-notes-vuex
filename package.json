@@ -4,18 +4,20 @@
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build"
+        "build": "vue-cli-service build",
+        "deploy": "sh deploy.sh"
     },
     "dependencies": {
-        "vue": "^2.6.12",
-        "vue-router": "^3.5.1",
+        "sass": "^1.54.9",
+        "vue": "^2.7.10",
+        "vue-router": "^3.6.5",
         "vuex": "^3.6.2"
     },
     "devDependencies": {
-        "@vue/cli-plugin-babel": "^4.5.11",
-        "@vue/cli-service": "^4.5.11",
-        "node-sass": "^5.0.0",
-        "sass-loader": "^10.1.1",
-        "vue-template-compiler": "^2.6.12"
+        "@vue/cli-plugin-babel": "^5.0.8",
+        "@vue/cli-service": "^5.0.8",
+        "sass-loader": "^13.0.2",
+        "vue-template-compiler": "^2.6.12",
+        "webpack": "^5.0.0"
     }
 }

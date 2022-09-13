@@ -21,23 +21,27 @@
       </div>
     </div>
     <!-- Search input -->
-    <input type="text" placeholder="Find your note" v-model="search" />
+    <input
+      class="search-input"
+      type="text"
+      placeholder="Find your note"
+      v-model="search"
+    />
   </div>
 </template>
 
 <script>
 export default {
-
   computed: {
     search: {
-       get: function () {
-            return this.$store.getters.getSearch;
-       },
-       set: function (val) {
-         this.$store.dispatch('setSearch', val)
-       }
-    }
-  }
+      get: function() {
+        return this.$store.getters.getSearch;
+      },
+      set: function(val) {
+        this.$store.dispatch("setSearch", val);
+      },
+    },
+  },
 };
 </script>
 
@@ -48,6 +52,8 @@ svg {
 /* Search */
 .wrapper__search {
   position: relative;
+  max-width: 600px;
+  width: 100%;
 }
 .search {
   top: 0px;
@@ -57,23 +63,18 @@ svg {
 }
 .search-icon {
   height: 100%;
-  padding-left: 100px;
+  padding-left: 16px;
   padding-right: 16px;
   align-items: center;
   display: flex;
 }
 input {
   padding: 16px 16px 16px 56px !important;
-  align-items: center;
-  margin-left: 130px;
   margin-bottom: 0px;
   border-radius: 30px;
   color: #909399;
   font-size: 16px;
   min-width: 400px;
-  max-width: 1000px;
   height: auto;
 }
 </style>
-
-

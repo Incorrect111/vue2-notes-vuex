@@ -1,108 +1,145 @@
 <template>
-<div class="container">
-  <div class="icons">
-    <svg :class="{ active: this.$store.getters.getGrid }" @click="changeGrid(true)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-    <svg :class="{ active: !this.$store.getters.getGrid }" @click="changeGrid(false)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg>
-  </div>
+  <div class="container">
+    <div class="icons">
+      <svg
+        :class="{ active: this.$store.getters.getGrid }"
+        @click="changeGrid(true)"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
+      </svg>
+      <svg
+        :class="{ active: !this.$store.getters.getGrid }"
+        @click="changeGrid(false)"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3" y2="6"></line>
+        <line x1="3" y1="12" x2="3" y2="12"></line>
+        <line x1="3" y1="18" x2="3" y2="18"></line>
+      </svg>
+    </div>
 
-  <div class="notes">
- <div
-      class="note"
-      :class="[note.note.priority, { full: !grid }]"
-      v-for="(note, index) in notesFiltered"
-      :key="index"
-    >
-
-  <!-- header -->
-
-      <div class="note-header">
-        <p
-          style="cursor: pointer"
-          v-show="note.title.titleShow"
-          @click="editing(index, 'titleEditing')"
-        >{{ note.title.nameOfNote }}</p>
-        <br />
-        <br />
-        <input v-model="note.title.additionalTitleVar" v-show="note.title.hidenTitle" />
-        <p style="cursor: pointer" @click="removeNote(index)">x</p>
-      </div>
-
-<!-- body -->
-
+    <div class="notes">
+      <div
+        class="note"
+        :class="[note.note.priority, { full: !grid }]"
+        v-for="(note, index) in notesFiltered"
+        :key="index"
+      >
+        <!-- header -->
+        <div class="note-header">
+          <p
+            style="cursor: pointer"
+            v-show="note.title.titleShow"
+            @click="editing(index, 'titleEditing')"
+          >
+            {{ note.title.nameOfNote }}
+          </p>
+          <br />
+          <br />
+          <input
+            v-model="note.title.additionalTitleVar"
+            v-show="note.title.hidenTitle"
+          />
+          <p style="cursor: pointer" @click="removeNote(index)">x</p>
+        </div>
+        <!-- body -->
         <div class="note-body">
-        <p
-          style="cursor: pointer"
-          v-show="note.description.descrShow"
-          @click="editing(index, 'descrEditing')"
-        >{{ note.description.descrContent }}</p>
-        <input v-model="note.description.additionalDescrVar" v-show="note.description.hidenDescr" />
-        <span>{{ note.date }}</span>
+          <p
+            style="cursor: pointer"
+            v-show="note.description.descrShow"
+            @click="editing(index, 'descrEditing')"
+          >
+            {{ note.description.descrContent }}
+          </p>
+          <input
+            v-model="note.description.additionalDescrVar"
+            v-show="note.description.hidenDescr"
+          />
+          <span>{{ note.date }}</span>
+        </div>
       </div>
     </div>
   </div>
-  </div>
 </template>
 <script>
-
-
-
 export default {
   data() {
     return {
-      notes: []
+      notes: [],
     };
   },
 
   created() {
-    this.notes = this.$store.getters.getNotes
-    this.grid = this.$store.getters.getGrid
+    this.notes = this.$store.getters.getNotes;
+    this.grid = this.$store.getters.getGrid;
   },
   computed: {
-       notesFiltered () {
-            let array = this.$store.getters.getNotes,
-                search = this.$store.getters.getSearch
-                //Small
-            search = search.trim().toLowerCase()
-            this.$store.dispatch('setSearch', search)
-                //Filter
-            array = array.filter(function (item) {
-                if (item.title.nameOfNote.toLowerCase().indexOf(search) !== -1) {
-                    return  item
-                }
-            })
-                //Error
-                return this.notes = array
+    notesFiltered() {
+      let array = this.$store.getters.getNotes,
+        search = this.$store.getters.getSearch;
+      //Small
+      search = search.trim().toLowerCase();
+      this.$store.dispatch("setSearch", search);
+      //Filter
+      array = array.filter(function(item) {
+        if (item.title.nameOfNote.toLowerCase().indexOf(search) !== -1) {
+          return item;
+        }
+      });
+      //Error
+      return (this.notes = array);
 
-                 if (!search) return array
-        },
+      if (!search) return array;
+    },
 
-        grid: {
-          get: function() {
-              return this.$store.getters.getGrid
-          },
+    grid: {
+      get: function() {
+        return this.$store.getters.getGrid;
+      },
 
-          set: function() {
-          }
-        },
+      set: function() {},
+    },
   },
   methods: {
     // Remove note
     removeNote(index) {
-      this.$store.dispatch('removeNote', index)
+      this.$store.dispatch("removeNote", index);
     },
 
     //Editing
     editing(index, editingParam) {
-      this.$store.dispatch ('editing',
-      {
+      this.$store.dispatch("editing", {
         note: this.notes[index],
-        editing: editingParam
-       })
+        editing: editingParam,
+      });
     },
     changeGrid(boolean) {
-      this.$store.dispatch('changeGrid', boolean)
-    }
-  }
+      this.$store.dispatch("changeGrid", boolean);
+    },
+  },
 };
 </script>
 
@@ -169,5 +206,5 @@ svg {
     margin-right: 0;
   }
 }
-
-</style> -->
+</style>
+-->
