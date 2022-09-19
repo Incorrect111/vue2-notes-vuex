@@ -1,7 +1,5 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/notes-vuex/'
-    : '/',
+  publicPath: '/notes-vuex/',
   assetsDir: '',
   productionSourceMap: false,
   filenameHashing: true
