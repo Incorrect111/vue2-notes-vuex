@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: '/notex-vuex/',
+  publicPath: '/notes-vuex/',
   assetsDir: '',
   productionSourceMap: false,
   filenameHashing: true

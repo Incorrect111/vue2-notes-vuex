@@ -21,8 +21,7 @@
     </ul>
     <p>
       Сделано на курсе
-      <a href="https://tocode.ru/courses/vuejs-3-s-nulya-do-rezultata/"
-        >Vue.js 3 c нуля до результата</a
+      <a href="https://app.tocode.ru/courses/vue-pro/">Vue 2 - С нуля до про</a
       >
     </p>
   </div>
