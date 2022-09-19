@@ -12,7 +12,7 @@ import About from '@/pages/About.vue'
 //Routering
 
 export default new Router({
-    mode: 'history',
+    mode: 'hash',
     routes: [{
             path: '/',
             name: 'home',
