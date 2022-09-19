@@ -1,4 +1,5 @@
 <template>
+  <section class="search-section">
   <div class="wrapper__search">
     <!-- Search -->
     <div class="search">
@@ -28,6 +29,7 @@
       v-model="search"
     />
   </div>
+</section>
 </template>
 
 <script>
@@ -76,5 +78,10 @@ input {
   font-size: 16px;
   min-width: 400px;
   height: auto;
+}
+.search-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

@@ -7,7 +7,7 @@ Vue.use(Router)
 //Pages
 import Home from '@/pages/Home.vue'
 import NotFound from '@/pages/404.vue'
-import Example from '@/pages/Example.vue'
+import About from '@/pages/About.vue'
 
 //Routering
 
@@ -20,9 +20,9 @@ export default new Router({
         },
 
         {
-            path: '/example',
-            name: 'example',
-            component: Example
+            path: '/about',
+            name: 'about',
+            component: About
         },
         {
             path: '*',

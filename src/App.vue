@@ -1,30 +1,27 @@
 <template>
-  <div class="wrapper-content">
-    <section>
-      <div class="container">
-        <section>
-          <div class="new-note">
-            <newNote />
-          </div>
-        </section>
-        <section class="search-section">
-          <search />
-        </section>
-        <notes />
-      </div>
-    </section>
+  <div class="wrapper">
+    <Header />
+    <div class="wrapper-content">
+      <section>
+        <div class="container">
+          <router-view />
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 <script>
 import notes from "@/components/Notes.vue";
 import newNote from "@/components/NewNote.vue";
 import search from "@/components/Search.vue";
+import Header from "@/components/System/Header.vue";
 
 export default {
   components: {
     notes,
     newNote,
     search,
+    Header,
   },
 };
 </script>
@@ -39,6 +36,5 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 </style>

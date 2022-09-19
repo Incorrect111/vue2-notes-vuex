@@ -60,6 +60,7 @@
           <br />
           <br />
           <input
+            class="hidden-input"
             v-model="note.title.additionalTitleVar"
             v-show="note.title.hidenTitle"
           />
@@ -75,6 +76,7 @@
             {{ note.description.descrContent }}
           </p>
           <input
+            class="hidden-input"
             v-model="note.description.additionalDescrVar"
             v-show="note.description.hidenDescr"
           />
@@ -104,7 +106,7 @@ export default {
       search = search.trim().toLowerCase();
       this.$store.dispatch("setSearch", search);
       //Filter
-      array = array.filter(function(item) {
+      array = array.filter(function (item) {
         if (item.title.nameOfNote.toLowerCase().indexOf(search) !== -1) {
           return item;
         }
@@ -116,11 +118,11 @@ export default {
     },
 
     grid: {
-      get: function() {
+      get: function () {
         return this.$store.getters.getGrid;
       },
 
-      set: function() {},
+      set: function () {},
     },
   },
   methods: {
@@ -155,6 +157,7 @@ export default {
   width: 48%;
   padding: 18px 20px;
   margin-bottom: 20px;
+  min-height: 220px;
   background-color: #fff;
 
   &.full {
@@ -176,14 +179,21 @@ export default {
 }
 
 .note-body {
+  // min-height: 120px;
   p {
     margin: 20px 0px;
   }
   span {
+    margin-top: 5px;
     font-size: 14px;
     color: #999999;
+    bottom: 5px;
+  }
+  input {
+    height: 5px;
   }
 }
+
 .note-header {
   display: flex;
   text-align: center;
@@ -193,6 +203,9 @@ export default {
     font-size: 22px;
     color: rgb(45, 30, 255);
   }
+}
+.hidden-input {
+  height: 5px;
 }
 
 svg {
